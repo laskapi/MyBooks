@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: MyBooks
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://localhost:5432/mybooksdb
+    username: myuser
+    password: mypassword
+jwt:
+  secret: ee29ac79bd47274bbd50e3a0860999e3b94208f29684835959dd5ca10f0ce72d
+  expiration: 3600000
+
