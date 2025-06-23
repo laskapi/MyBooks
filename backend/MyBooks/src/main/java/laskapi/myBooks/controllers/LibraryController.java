@@ -49,5 +49,9 @@ public class LibraryController {
             return ResponseEntity.badRequest().build();
         }
        }
-
+        @DeleteMapping("/delete")
+    public ResponseEntity<Volume> delete(@RequestBody Volume volume){
+        
+        return ResponseEntity.ok(volume);
+        }
 }

@@ -3,7 +3,7 @@ import libraryService from "../services/library.service"
 import { Button, Card } from "react-bootstrap"
 
 
-export default function Details({selected}) {
+export default function Details({selected,setLibVolumes}) {
 
     const [exists,setExists]=useState(true)
 
@@ -13,7 +13,13 @@ export default function Details({selected}) {
     },[selected])
 
     function addToLibrary(): void {
-       libraryService.add(selected).then(response=>{if(response)setExists(true)})
+       libraryService.add(selected)
+       .then(response=>{
+        if(response){
+            setExists(true)
+        libraryService.getAll().then(responseArray=>setLibVolumes(responseArray))
+           
+        }})
     }
 
     return (

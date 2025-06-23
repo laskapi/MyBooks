@@ -6,19 +6,23 @@ import Volume from "./volume.component"
 import Details from "./details.component"
 
 
-export default function Library() {
+export default function LibraryTab({volumes}:{volumes:Array<IVolume>}) {
 
-    const [volumes, setVolumes] = useState<Array<IVolume> | null>(null)
+  //  let volumes=Array.from(vols)
+   
+  // const [volumes, setVolumes] = useState<Array<IVolume> | null>(null)
     const [selected, setSelected] = useState<IVolume>()
   
-    useEffect(()=>{
+   
+ /*    useEffect(()=>{
         libraryService.getAll().then(response => setVolumes(response))
         
-    },)
- 
+    },[]) */
+
+   
     return (
         <>          
-
+           
             {volumes && (
                 <div className="container">
                     <div className="row">
@@ -29,7 +33,7 @@ export default function Library() {
 
                         </div>
                         <div className="col-sm-6">
-                                <Details selected={selected}/>
+                                <Details selected={selected} />
                            
                         </div>
                     </div>

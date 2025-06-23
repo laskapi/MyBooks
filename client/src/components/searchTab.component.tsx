@@ -6,7 +6,7 @@ import Volume from "./volume.component"
 import Details from "./details.component"
 import SearchBox from "./searchBox.component"
 
-export default function Search() {
+export default function SearchTab({setLibVolumes}) {
 
     const [volumes, setVolumes] = useState<Array<IVolume> | null>(null)
     const [selected, setSelected] = useState<IVolume>()
@@ -31,7 +31,7 @@ export default function Search() {
 
                         </div>
                         <div className="col-sm-6">
-                                <Details selected={selected}/>
+                            {    <Details selected={selected} setLibVolumes={setLibVolumes}/>}
                            
                         </div>
                     </div>

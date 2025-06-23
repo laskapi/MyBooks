@@ -4,21 +4,30 @@ import AuthService from "../services/auth.service"
 import type IUser from "../types/user.type"
 import Tabs from "react-bootstrap/Tabs"
 import Tab from "react-bootstrap/Tab"
-import Search from "./searchTab.component"
-import Library from "./libraryTab.component"
+import SearchTab from "./searchTab.component"
+import LibraryTab from "./libraryTab.component"
 import { Appbar } from "./appbar.component"
+import type { IVolume } from "../types/volume.type"
+import libraryService from "../services/library.service"
 
 
 export default function Home() {
 
 
-  const [currentUser,] = useState<IUser>(AuthService.getCurrentUser())
- 
-  if (!currentUser) return (<Navigate to='/' />)
+const [currentUser,] = useState<IUser>(AuthService.getCurrentUser())
+if (!currentUser) return (<Navigate to='/' />) 
 
-  useEffect(() => {
-    console.log("Current user: " + currentUser?.username)
+  const[libVolumes,setLibVolumes]=useState<IVolume[]>(Array())
+useEffect(()=>{
+libraryService.getAll().then(response=>{
+    console.log(response.length)
+    setLibVolumes(response)
   })
+},[])
+  
+  /* useEffect(() => {
+    console.log("Current user: " + currentUser?.username)
+  }) */
 
 
   return (
@@ -27,15 +36,13 @@ export default function Home() {
       <Tabs defaultActiveKey="search"
         className="mb-3">
         <Tab eventKey="search" title="Search">
-        <Search>
-          </Search>
+        <SearchTab setLibVolumes={setLibVolumes} />
+          
         </Tab>
         <Tab eventKey="library" title="My Library">
-          <Library>
-          </Library>
+          <LibraryTab volumes={libVolumes}/>
         </Tab>
       </Tabs>
-
      
     </>
   )
