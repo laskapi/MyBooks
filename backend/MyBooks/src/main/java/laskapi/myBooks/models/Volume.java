@@ -1,15 +1,28 @@
 package laskapi.myBooks.models;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
+//@Data
+@NoArgsConstructor
+//@AllArgsConstructor
+@Entity
 public class Volume {
-
+    @Id
+    @Basic(optional = false)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     public String id;
+    @Column(length = 2048)
     public String title;
+    @Column(columnDefinition = "text")
     public String description;
+    @Column(length = 2048)
     public String publisher;
     public String publishedDate;
     public List<String> authors= new ArrayList<>();

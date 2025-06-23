@@ -4,12 +4,11 @@ import { Formik, Field, Form, ErrorMessage } from "formik"
 import * as Yup from "yup"
 
 import AuthService from "../services/auth.service"
+import { Appbar } from "./appbar.component"
 
 
 export default function Login() {
-  const [redirect, setRedirect] = useState<String | null>(null)
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
+  
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState("")
 
@@ -70,8 +69,9 @@ export default function Login() {
 
 
 
-  return (
-    <div className="col-md-12">
+  return (<>
+     <Appbar/>
+    <div className="col-md-4 offset-4">
       <div className="card card-container">
 
         <Formik
@@ -128,5 +128,6 @@ export default function Login() {
         </div>
       </div>
     </div>
+</>
   );
 }

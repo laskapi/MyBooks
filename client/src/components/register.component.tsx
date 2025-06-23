@@ -1,16 +1,14 @@
 import { useState } from "react"
-import {Link, useNavigate} from "react-router-dom"
+import {Link,} from "react-router-dom"
 import { Formik, Field, Form, ErrorMessage } from "formik"
 import * as Yup from "yup"
 
 import AuthService from "../services/auth.service";
+import { Appbar } from "./appbar.component";
 
 
 export default function Register(){
 
-/* const [username, setUsername]=useState("")
-const [email, setEmail]=useState("")
-const [password, setPassword]=useState("") */
 const [successful, setSuccessful]=useState(false)
 const [message, setMessage]=useState("")
 
@@ -78,7 +76,9 @@ const [message, setMessage]=useState("")
   
 
      return (
-      <div className="col-md-12">
+      <>
+      <Appbar/>
+      <div className="col-md-4 offset-4">
         <div className="card card-container">
          
           <Formik
@@ -150,6 +150,7 @@ const [message, setMessage]=useState("")
             </div>
         </div>
       </div>
+</>
     );
   
   }

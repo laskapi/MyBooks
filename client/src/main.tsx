@@ -6,7 +6,6 @@ import { BrowserRouter } from 'react-router-dom'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <h3>Welcome to MyBooks</h3>
     <BrowserRouter>
       <App />
     </BrowserRouter>

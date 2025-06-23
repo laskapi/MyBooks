@@ -46,7 +46,11 @@
 .thumbnail{
 
  object-fit: scale-down;
- max-height: 60px;
+ max-height: 5vw;
+
+}
+.noImage{
+  font-size: small;
 }
 
 .volume{
@@ -55,7 +59,7 @@
     /* container-type: size;
     font-size:4cqh; */
 }
-.horizontalWrap{
+/* .horizontalWrap{
 
   display: flex;
   margin: auto;
@@ -63,7 +67,10 @@
   flex-direction: row;
   align-items: center;
   
-}
+} */
 .overflowTx{
   overflow: hidden;
+}
+#searchbox{
+  width:60%;
 }

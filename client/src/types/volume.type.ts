@@ -1,4 +1,4 @@
-export default interface IVolume {
+export type IVolume ={
     id:string
     title:string
     description:string
