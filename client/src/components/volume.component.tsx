@@ -1,7 +1,7 @@
 import type {IVolume} from "../types/volume.type";
 
    export default function Volume({volume, setSelected}){
-   return (<div className="row text-bg-light volume border m-2 rounded-2" onClick={() => setSelected(volume)}>
+   return (<div className="row  volume border m-2 rounded-2" onClick={() => setSelected(volume)}>
                                     <div className="col-sm-9">
                                         <div>{volume.authors.join(", ")}</div>
                                         <div ><b> {volume.title}</b></div>

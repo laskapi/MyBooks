@@ -31,11 +31,12 @@ public class SearchController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<Volume>> searchByTitle(@RequestParam String query) throws JsonProcessingException {
+    public ResponseEntity<List<Volume>> searchByTitle(@RequestParam String query, @RequestParam int index)
+            throws JsonProcessingException {
 
         JsonNode response = restClient.get().uri("?q=intitle:" + query +
                         "&projection" +
-                        "=lite&maxResults=5")
+                        "=lite&maxResults=5&startIndex=" + index)
                 .retrieve().body(JsonNode.class);
 
         JsonNode items = response.path("items");
@@ -45,8 +46,8 @@ public class SearchController {
     /*    stream.forEach(i -> log.info(i.path("volumeInfo").path("title")
            .asText()));*/
 
-        List volumes=stream.map(i->new Volume(i)).toList();
-        log.info("Volumes read: "+volumes.size());
+        List volumes = stream.map(i -> new Volume(i)).toList();
+        log.info("Volumes read: " + volumes.size());
         return ResponseEntity.ok().body(volumes);
     }
 }

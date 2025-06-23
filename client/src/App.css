@@ -59,6 +59,10 @@
     /* container-type: size;
     font-size:4cqh; */
 }
+.volume:hover {
+   background-color: #dadbfb;
+  }
+
 /* .horizontalWrap{
 
   display: flex;
