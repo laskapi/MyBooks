@@ -1,9 +1,7 @@
 package laskapi.myBooks.controllers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import laskapi.myBooks.models.Volume;
 import laskapi.myBooks.repositories.LibraryRepository;
-import laskapi.myBooks.repositories.UserRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,39 +17,34 @@ public class LibraryController {
     @Autowired
     LibraryRepository libraryRepository;
 
+    @ExceptionHandler
+    public ResponseEntity<Object> handleException(Exception e) {
+        log.error(e.getMessage());
+        return ResponseEntity.badRequest().build();
+
+    }
+
     @GetMapping("/exists")
     public ResponseEntity<Boolean> exists(@RequestParam String id) {
-        boolean exists=libraryRepository.existsById(id);
+        boolean exists = libraryRepository.existsById(id);
         log.info("exists: {}", exists);
         return ResponseEntity.ok(exists);
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Volume> add(@RequestBody Volume volume){
-        log.info("added volume {}",volume.title);
+    public ResponseEntity<Volume> add(@RequestBody Volume volume) {
+        log.info("added volume {}", volume.title);
+        return ResponseEntity.ok(libraryRepository.save(volume));
+    }
 
-        try {
+    @GetMapping("/get")
+    public ResponseEntity<List<Volume>> getAll() {
+        return ResponseEntity.ok().body(libraryRepository.findAll());
+    }
 
-            return ResponseEntity.ok(libraryRepository.save(volume));
-
-        }catch(Exception e) {
-            log.error(e.getMessage());
-            return ResponseEntity.badRequest().build();
-        }
-       }
-
-       @GetMapping("/get")
-    public ResponseEntity<List<Volume>> getAll(){
-        try{
-            return ResponseEntity.ok().body(libraryRepository.findAll());
-        }catch (Exception e){
-            log.error(e.getMessage());
-            return ResponseEntity.badRequest().build();
-        }
-       }
-        @DeleteMapping("/delete")
-    public ResponseEntity<Volume> delete(@RequestBody Volume volume){
-        
-        return ResponseEntity.ok(volume);
-        }
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteById(@PathVariable String id) {
+        libraryRepository.deleteById(id);
+        return ResponseEntity.ok(id);
+    }
 }

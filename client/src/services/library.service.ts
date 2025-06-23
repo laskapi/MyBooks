@@ -23,7 +23,7 @@ const API_URL = "http://localhost:8080/api/library/"
     }
 
     delete(selected:IVolume){
-      return axios.delete(API_URL+"delete",{headers:authHeader(),data:{selected}})
+      return axios.delete(API_URL+"delete/"+selected.id,{headers:authHeader()})
     }
 }
 export default new LibraryService()

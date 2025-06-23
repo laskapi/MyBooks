@@ -40,7 +40,7 @@ libraryService.getAll().then(response=>{
           
         </Tab>
         <Tab eventKey="library" title="My Library">
-          <LibraryTab volumes={libVolumes}/>
+          <LibraryTab setLibVolumes={setLibVolumes} volumes={libVolumes}/>
         </Tab>
       </Tabs>
      

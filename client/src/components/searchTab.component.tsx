@@ -5,6 +5,7 @@ import type {IVolume} from "../types/volume.type"
 import Volume from "./volume.component"
 import Details from "./details.component"
 import SearchBox from "./searchBox.component"
+import AddButton from "./addButton.component"
 
 export default function SearchTab({setLibVolumes}) {
 
@@ -14,13 +15,13 @@ export default function SearchTab({setLibVolumes}) {
  
 
     function handleSearch(): void {
-        searchService.search(query).then(response => setVolumes(response))
+        searchService.searchByTitle(query).then(response => setVolumes(response))
     }
 
     return (
         <>
             <SearchBox handleSearch={handleSearch} setQuery={setQuery} />
-
+              
             {volumes && (
                 <div className="container">
                     <div className="row">
@@ -31,8 +32,9 @@ export default function SearchTab({setLibVolumes}) {
 
                         </div>
                         <div className="col-sm-6">
-                            {    <Details selected={selected} setLibVolumes={setLibVolumes}/>}
-                           
+                              <Details selected={selected} />
+                              <AddButton selected={selected} setLibVolumes={setLibVolumes}/>
+                            
                         </div>
                     </div>
                 </div>)}

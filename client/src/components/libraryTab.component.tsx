@@ -4,9 +4,10 @@ import type {IVolume} from "../types/volume.type"
 
 import Volume from "./volume.component"
 import Details from "./details.component"
+import DeleteButton from "./deleteButton.component"
 
 
-export default function LibraryTab({volumes}:{volumes:Array<IVolume>}) {
+export default function LibraryTab({setLibVolumes,volumes}:{setLibVolumes,volumes:Array<IVolume>}) {
 
   //  let volumes=Array.from(vols)
    
@@ -34,7 +35,7 @@ export default function LibraryTab({volumes}:{volumes:Array<IVolume>}) {
                         </div>
                         <div className="col-sm-6">
                                 <Details selected={selected} />
-                           
+                            <DeleteButton selected={selected} setSelected={setSelected} setLibVolumes={setLibVolumes} />
                         </div>
                     </div>
                 </div>)}

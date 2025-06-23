@@ -4,7 +4,7 @@ const API_URL = "http://localhost:8080/api/search/"
 
  class SearchService {
 
-    search(name: string) {
+    searchByTitle(name: string) {
             return axios.get(API_URL+"search?",{headers:authHeader(),params:{query:name}})
             .then(response=> {return response.data})
             

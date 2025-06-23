@@ -31,11 +31,11 @@ public class SearchController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<Volume>> search(@RequestParam String query) throws JsonProcessingException {
+    public ResponseEntity<List<Volume>> searchByTitle(@RequestParam String query) throws JsonProcessingException {
 
-        JsonNode response = restClient.get().uri("?q=/*intitle:*/" + query +
+        JsonNode response = restClient.get().uri("?q=intitle:" + query +
                         "&projection" +
-                        "=lite")
+                        "=lite&maxResults=5")
                 .retrieve().body(JsonNode.class);
 
         JsonNode items = response.path("items");
