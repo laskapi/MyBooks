@@ -2,7 +2,7 @@ To run MyBooks app please create folder for your repo,
 get into and run following commands:
 
 1. git clone https://github.com/laskapi/MyBooks
-2. cd backend
+2. cd MyBooks/backend
 3. docker compose up
 4.  mvn spring-boot:run
 5. cd ..
