@@ -1,5 +1,5 @@
-import { Component, useEffect, useState } from "react"
-import { Navigate, redirect, useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { Navigate} from "react-router-dom"
 import AuthService from "../services/auth.service"
 import type IUser from "../types/user.type"
 import Tabs from "react-bootstrap/Tabs"
@@ -19,17 +19,13 @@ if (!currentUser) return (<Navigate to='/' />)
 
   const[libVolumes,setLibVolumes]=useState<IVolume[]>(Array())
 useEffect(()=>{
-libraryService.getAll().then(response=>{
+libraryService.getPage(0).then(response=>{
     console.log(response.length)
     setLibVolumes(response)
   })
 },[])
   
-  /* useEffect(() => {
-    console.log("Current user: " + currentUser?.username)
-  }) */
-
-
+  
   return (
     <>
      <Appbar/>
@@ -40,7 +36,7 @@ libraryService.getAll().then(response=>{
           
         </Tab>
         <Tab eventKey="library" title="My Library">
-          <LibraryTab setLibVolumes={setLibVolumes} volumes={libVolumes}/>
+          <LibraryTab setLibVolumes={setLibVolumes} libVolumes={libVolumes}/>
         </Tab>
       </Tabs>
      

@@ -1,4 +1,4 @@
-import { useEffect, useState, type FormEventHandler } from "react"
+import { useEffect, useState } from "react"
 import searchService from "../services/search.service"
 import type { IVolume } from "../types/volume.type"
 
@@ -15,13 +15,19 @@ export default function SearchTab({ setLibVolumes }) {
     const [query, setQuery] = useState<string>('')
     const [index, setIndex] = useState(0)
 
-    useEffect(() => {
-        handleSearch()
-    }, [index])
     function handleSearch(e?: Event): void {
         e?.preventDefault()
         searchService.searchByTitle(query, index).then(response => setVolumes(response))
     }
+    useEffect(()=>
+    {
+        setSelected(undefined)
+    },[volumes])
+
+    useEffect(() => {
+        handleSearch()
+    }, [index])
+
     useEffect(() => {
         setIndex(0)
     }, [query])
@@ -37,12 +43,21 @@ export default function SearchTab({ setLibVolumes }) {
 
                             <div className="d-flex flex-row justify-content-center mt-3">
                                 <p className='px-3'>
-                                    page: {Math.round((index + 1) / 5) + 1}
+                                    page: {index + 1}
                                 </p>
                                 <Pagination  >
-                                    <Pagination.Prev onClick={() => setIndex(Math.max(index - 5, 0))} />
+                                    <Pagination.Prev onClick={() => setIndex(Math.max(index - 1, 0))} />
+                                    {/*          <Pagination.Next onClick={() => setIndex(index + 5)} />
+                            */}
+                                    <Pagination.Next onClick={() => {
+                                        searchService.searchByTitle(query, index + 1).then(response => {
+                                            if (response.length > 0) {
+                                                setVolumes(response)
+                                                setIndex(index + 1)
+                                            }
+                                        })
+                                    }} />
 
-                                    <Pagination.Next onClick={() => setIndex(index + 5)} />
 
                                 </Pagination>
                             </div>
@@ -54,12 +69,13 @@ export default function SearchTab({ setLibVolumes }) {
                             )}
 
                         </div>
-                        <div className="col-sm-6">
+                      { selected && ( <div className="col-sm-6">
                             <Details selected={selected} />
                             <AddButton selected={selected} setLibVolumes={setLibVolumes} />
 
-                        </div>
+                        </div>)}
                     </div>
+                      
                 </div>)}
         </>
     )

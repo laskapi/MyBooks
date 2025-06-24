@@ -31,9 +31,9 @@ public class SearchController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<Volume>> searchByTitle(@RequestParam String query, @RequestParam int index)
+    public ResponseEntity<List<Volume>> searchByTitle(@RequestParam String query, @RequestParam int page)
             throws JsonProcessingException {
-
+        int index=page*5;
         JsonNode response = restClient.get().uri("?q=intitle:" + query +
                         "&projection" +
                         "=lite&maxResults=5&startIndex=" + index)

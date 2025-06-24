@@ -16,14 +16,14 @@ export default function AddButton({selected,setLibVolumes}) {
        .then(response=>{
         if(response){
             setExists(true)
-        libraryService.getAll().then(responseArray=>setLibVolumes(responseArray))
+        libraryService.getPage(0).then(responseArray=>setLibVolumes(responseArray))
            
         }})
     }
 
     return (
                 selected&&( !exists ? <Button onClick={addToLibrary} variant="primary">Add to library</Button>
-                        :<Button disabled> This Book is in Your library </Button>
+                        :<Button disabled> Added to Your library </Button>
                 )
                     )
 }

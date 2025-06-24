@@ -4,8 +4,8 @@ import type { IVolume } from "../types/volume.type"
 const API_URL = "http://localhost:8080/api/library/"
 
  class LibraryService {
-    getAll() {
-      return axios.get(API_URL+"get",{headers:authHeader()})
+    getPage(index:number) {
+      return axios.get(API_URL+"get/"+index,{headers:authHeader()})
         .then(response=>{return response.data})
     }
 
