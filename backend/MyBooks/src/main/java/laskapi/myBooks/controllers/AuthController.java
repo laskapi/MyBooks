@@ -49,7 +49,7 @@ public class AuthController {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         String token=jwtService.generateToken(userDetails.getUsername());
         return ResponseEntity.ok().body(new UserDto(userDetails.getUsername()
-                ,token)/*Collections.singletonMap("accessToken",token)*/);
+                ,token));
 
     }catch(AuthenticationException e){
         return ResponseEntity.notFound().build();
@@ -62,7 +62,7 @@ public class AuthController {
     public ResponseEntity<Map<String,String>> registerUser(@RequestBody User user) {
         if (userRepository.existsByUsername(user.getUsername())) {
                return ResponseEntity.badRequest().body(Collections.singletonMap("message",
-                    "User is already taken!"));
+                    "Username is already taken!"));
 
         }
         // Create new user's account

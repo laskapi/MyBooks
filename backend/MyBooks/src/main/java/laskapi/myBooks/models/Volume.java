@@ -16,7 +16,6 @@ import java.util.List;
 public class Volume {
     @Id
     @Basic(optional = false)
-//    @GeneratedValue(strategy = GenerationType.AUTO)
     public String id;
     @Column(length = 2048)
     public String title;
