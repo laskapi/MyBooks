@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react"
-import libraryService from "../services/library.service"
-import { Button, Card } from "react-bootstrap"
+
+import {  Card } from "react-bootstrap"
 
 
 export default function Details({selected}) {

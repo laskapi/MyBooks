@@ -10,10 +10,10 @@ export default function DownloadButton({ url }: { url: string }) {
     }
 
     return (
-    <>
-  
-        {url&&( <Button onClick={download} variant="primary">Download pdf</Button>
-             )}
+    <>  
+        {url&&( 
+            <Button onClick={download} variant="primary">Download pdf</Button>
+        )}
     </>
     )
 }

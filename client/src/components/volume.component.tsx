@@ -1,4 +1,3 @@
-import type {IVolume} from "../types/volume.type";
 
    export default function Volume({volume, setSelected}){
    return (<div className="row  volume border m-2 rounded-2" onClick={() => setSelected(volume)}>
