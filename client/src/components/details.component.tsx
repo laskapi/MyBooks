@@ -15,7 +15,7 @@ export default function Details({selected}) {
                 <Card.Subtitle>published: {selected.publisher}{", "}{selected.publishedDate}</Card.Subtitle>
                 <Card.Img style={{ width: '12rem' }} src={selected.thumbnails[0]}/>
                    <Card.Text >{selected.description}</Card.Text>
-              
+                
             </Card.Body>
         </Card>
     }

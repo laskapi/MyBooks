@@ -4,6 +4,7 @@ export type IVolume ={
     description:string
     publisher:string
     publishedDate:string
+    pdf:string
     authors: Array<string>
     thumbnails:Array<string>
 }

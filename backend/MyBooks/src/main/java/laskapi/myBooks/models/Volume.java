@@ -25,6 +25,7 @@ public class Volume {
     @Column(length = 2048)
     public String publisher;
     public String publishedDate;
+    public String pdf;
     public List<String> authors= new ArrayList<>();
     public List<String> thumbnails= new ArrayList<>();
 
@@ -40,7 +41,7 @@ public class Volume {
         description=volumeNode.path("description").asText();
         publisher=volumeNode.path("publisher").asText();
         publishedDate=volumeNode.path("publishedDate").asText();
-
+        pdf=fullNode.path("accessInfo").path("pdf").path("downloadLink").asText();
         volumeNode.path("authors").elements().forEachRemaining(a->authors.add(a.asText()));
         volumeNode.path("imageLinks").elements().forEachRemaining(t->thumbnails.add(t.asText()));
 

@@ -7,6 +7,7 @@ import Details from "./details.component"
 import SearchBox from "./searchBox.component"
 import AddButton from "./addButton.component"
 import { Pagination } from "react-bootstrap"
+import DownloadButton from "./downloadButton.component"
 
 export default function SearchTab({ setLibVolumes }) {
 
@@ -47,8 +48,7 @@ export default function SearchTab({ setLibVolumes }) {
                                 </p>
                                 <Pagination  >
                                     <Pagination.Prev onClick={() => setIndex(Math.max(index - 1, 0))} />
-                                    {/*          <Pagination.Next onClick={() => setIndex(index + 5)} />
-                            */}
+                              
                                     <Pagination.Next onClick={() => {
                                         searchService.searchByTitle(query, index + 1).then(response => {
                                             if (response.length > 0) {
@@ -71,8 +71,10 @@ export default function SearchTab({ setLibVolumes }) {
                         </div>
                       { selected && ( <div className="col-sm-6">
                             <Details selected={selected} />
+                            <div className="d-flex justify-content-around">
                             <AddButton selected={selected} setLibVolumes={setLibVolumes} />
-
+                            <DownloadButton url={selected.pdf}/>
+                            </div>
                         </div>)}
                     </div>
                       
